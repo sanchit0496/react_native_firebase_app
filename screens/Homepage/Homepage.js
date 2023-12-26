@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View, SafeAreaView, Alert } from 'react-native'
+import { StyleSheet, Text, View, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import * as Location from "expo-location";
+import { MaterialIcons } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Homepage = () => {
 
@@ -74,8 +76,11 @@ const Homepage = () => {
     return (
         <SafeAreaView>
             <View>
+            <MaterialIcons name="location-on" size={24} color="#fd5c63" />
+            <View>
+                <Text style = {{fontSize: 18, fontWeight: "600"}}>Home</Text>
                 <Text>{displayCurrentAddress}</Text>
-                <Text>Homepage Location</Text>
+            </View>
             </View>
         </SafeAreaView>
     )
