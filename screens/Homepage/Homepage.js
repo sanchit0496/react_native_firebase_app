@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import * as Location from "expo-location";
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Carousel from '../../components/Carousel';
 
 const Homepage = () => {
 
@@ -98,8 +99,10 @@ const Homepage = () => {
 
       <View style = {styles.searchBar}>
         <TextInput placeholder='Search Bar' />
-        <FontAwesome name="search" size={24} color="black" />
+        <FontAwesome name="search" size={24} color="#fd5c63" />
       </View>
+
+      <Carousel />
 
     </SafeAreaView>
   )
