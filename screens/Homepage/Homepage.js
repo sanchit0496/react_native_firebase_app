@@ -13,9 +13,10 @@ const Homepage = () => {
   const cart = useSelector((state) => state.cart.cart)
   const product = useSelector((state) => state.product.product)
 
+  const total = cart.map((item) => item.quantity * item.price).reduce((curr,prev) => curr + prev,0);
+
   console.log("Cart", cart)
   console.log("Product", product)
-
 
   const [displayCurrentAddress, setDisplayCurrentAddress] = useState('We are loading your location');
   const [locationServicesEnabled, setLocationServicesEnabled] = useState(false);
@@ -141,6 +142,7 @@ const Homepage = () => {
   ];
 
   return (
+    <>
     <ScrollView style = {{backgroundColor: 'whitesmoke', marginTop: 50}}>
       <View style={styles.container}>
         <MaterialIcons name="location-on" size={24} color="#fd5c63" style={styles.icon} />
@@ -174,6 +176,37 @@ const Homepage = () => {
       }
 
     </ScrollView>
+    {total === 0 ? (
+  null
+) : (
+  <Pressable
+    style={{
+      backgroundColor: "#088F8F",
+      padding: 10,
+      marginBottom: 40,
+      margin: 15,
+      borderRadius: 7,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+    }}
+  >
+    <View>
+      <Text style={{ fontSize: 17, fontWeight: "600", color: "white" }}>
+        {cart.length} items | $ {total}
+      </Text>
+      <Text style={{ fontSize: 15, fontWeight: "400", color: "white", marginVertical: 6 }}>
+        extra charges might apply
+      </Text>
+    </View>
+
+    <Pressable onPress={() => navigation.navigate("PickUp")}>
+      <Text style={{ fontSize: 17, fontWeight: "600", color: "white" }}>Proceed to pickup</Text>
+    </Pressable>
+  </Pressable>
+)}
+
+    </>
   )
 }
 
