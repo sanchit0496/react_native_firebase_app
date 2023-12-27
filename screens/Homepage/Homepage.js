@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Carousel from '../../components/Carousel';
 import Services from '../../components/Services';
 import DressItem from '../../components/DressItem';
+import { useNavigation } from "@react-navigation/native";
 
 const Homepage = () => {
 
@@ -24,6 +25,8 @@ const Homepage = () => {
   useEffect(() => {
     checkLocationStatus();
   }, []);
+
+  const navigation = useNavigation();
 
   const checkLocationStatus = async () => {
     try {
@@ -87,6 +90,7 @@ const Homepage = () => {
 
   const handleProfilePress = () => {
     console.log("clicked")
+    navigation.navigate("Cart")
   }
 
   const services = [
@@ -200,7 +204,7 @@ const Homepage = () => {
       </Text>
     </View>
 
-    <Pressable onPress={() => navigation.navigate("PickUp")}>
+    <Pressable>
       <Text style={{ fontSize: 17, fontWeight: "600", color: "white" }}>Proceed to pickup</Text>
     </Pressable>
   </Pressable>
