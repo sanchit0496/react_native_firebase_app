@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Alert, Pressable, Image, TextInput, ScrollView } from 'react-native'
+import {useSelector} from 'react-redux'
 import React, { useEffect, useState } from 'react'
 import * as Location from "expo-location";
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
@@ -8,6 +9,13 @@ import Services from '../../components/Services';
 import DressItem from '../../components/DressItem';
 
 const Homepage = () => {
+
+  const cart = useSelector((state) => state.cart.cart)
+  const product = useSelector((state) => state.product.product)
+
+  console.log("Cart", cart)
+  console.log("Product", product)
+
 
   const [displayCurrentAddress, setDisplayCurrentAddress] = useState('We are loading your location');
   const [locationServicesEnabled, setLocationServicesEnabled] = useState(false);
@@ -164,7 +172,7 @@ const Homepage = () => {
           return (<DressItem key = {index} item={item} />)
         })
       }
-      
+
     </ScrollView>
   )
 }
