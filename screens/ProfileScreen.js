@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, Pressable, Image } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Pressable, Image, Platform, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { auth } from '../firebase'
 import { signOut } from 'firebase/auth';
@@ -45,7 +45,8 @@ const ProfileScreen = () => {
   }
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Pressable style={{ marginVertical: 10 }}>
+      
+        <Pressable style={{ marginVertical: 10 }}>
         <Text>welcome {user.email}</Text>
       </Pressable>
 
@@ -53,6 +54,7 @@ const ProfileScreen = () => {
         <Text>Sign Out</Text>
       </Pressable>
 
+  
       <View>
         {userOrders.map((item, index) => {
           return (
@@ -62,11 +64,30 @@ const ProfileScreen = () => {
                 source={{ uri: item.orders["0"].image }}
               />
               <View>
-                <Text style={styles.boldText}>Item: {item.orders["0"].name}</Text>
-                <Text style={styles.boldText}>Price: {item.orders["0"].price}</Text>
-                <Text style={styles.boldText}>Quantity: {item.orders["0"].quantity}</Text>
-                <Text style={styles.boldText}>No. of Days: {item.pickUpDetails.no_Of_days}</Text>
-                <Text style={styles.boldText}>Selected Time: {item.pickUpDetails.selectedTime}</Text>
+                <View style={styles.labelContainer}>
+                  <Text style={styles.label}>Item:</Text>
+                  <Text style={styles.regularText}>{item.orders["0"].name}</Text>
+                </View>
+
+                <View style={styles.labelContainer}>
+                  <Text style={styles.label}>Price:</Text>
+                  <Text style={styles.regularText}>{item.orders["0"].price}</Text>
+                </View>
+
+                <View style={styles.labelContainer}>
+                  <Text style={styles.label}>Quantity:</Text>
+                  <Text style={styles.regularText}>{item.orders["0"].quantity}</Text>
+                </View>
+
+                <View style={styles.labelContainer}>
+                  <Text style={styles.label}>No. of Days:</Text>
+                  <Text style={styles.regularText}>{item.pickUpDetails.no_Of_days}</Text>
+                </View>
+
+                <View style={styles.labelContainer}>
+                  <Text style={styles.label}>Selected Time:</Text>
+                  <Text style={styles.regularText}>{item.pickUpDetails.selectedTime}</Text>
+                </View>
               </View>
             </View>
           );
@@ -84,13 +105,36 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
+    backgroundColor: 'white',
+    borderRadius: 8,
+    padding: 16,
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
   image: {
     width: 70,
     height: 70,
     marginRight: 10,
   },
-  boldText: {
+  labelContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  label: {
     fontWeight: 'bold',
+    marginRight: 5,
+  },
+  regularText: {
+    marginLeft: 'auto', // Align dynamic content to the right
+    // You can define other styles for regular text here if needed
   },
 });
