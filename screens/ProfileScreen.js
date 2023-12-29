@@ -13,8 +13,6 @@ const ProfileScreen = () => {
   const [orderList, setOrderList] = useState([])
   const [userOrders, setUserOrders] = useState([])
 
-  console.log("user", user.email)
-
   const fetchOrders = async () => {
     var items = []
     const colRef = collection(db, "orders");
@@ -43,15 +41,20 @@ const ProfileScreen = () => {
       console.log(err);
     })
   }
+
+  const onPressHome = () => {
+    console.log("onPressHome")
+    navigation.navigate("Home");
+  }
   return (
     <>
-      <SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <SafeAreaView style={{ flex: 1 }}>
 
         <StatusBar backgroundColor="#fff" barStyle="dark-content" />
 
         <View style={styles.topBar}>
-          <Pressable style={{ marginRight: 10 }}>
-            <Text style={styles.text}>Welcome {user.email}</Text>
+          <Pressable style={{ marginRight: 10 }}  onPress={onPressHome}>
+            <Text style={styles.text}>Home</Text>
           </Pressable>
 
           <Pressable onPress={signOutUser}>
@@ -61,44 +64,46 @@ const ProfileScreen = () => {
 
         <Text style={styles.yourOrder}>Your Orders</Text>
 
-        <View>
-          {userOrders.map((item, index) => {
-            return (
-              <View key={index} style={styles.container}>
-                <Image
-                  style={styles.image}
-                  source={{ uri: item.orders["0"].image }}
-                />
-                <View>
-                  <View style={styles.labelContainer}>
-                    <Text style={styles.label}>Item:</Text>
-                    <Text style={styles.regularText}>{item.orders["0"].name}</Text>
-                  </View>
+        <ScrollView>
+          <View>
+            {userOrders.map((item, index) => {
+              return (
+                <View key={index} style={styles.container}>
+                  <Image
+                    style={styles.image}
+                    source={{ uri: item.orders["0"].image }}
+                  />
+                  <View>
+                    <View style={styles.labelContainer}>
+                      <Text style={styles.label}>Item:</Text>
+                      <Text style={styles.regularText}>{item.orders["0"].name}</Text>
+                    </View>
 
-                  <View style={styles.labelContainer}>
-                    <Text style={styles.label}>Price:</Text>
-                    <Text style={styles.regularText}>{item.orders["0"].price}</Text>
-                  </View>
+                    <View style={styles.labelContainer}>
+                      <Text style={styles.label}>Price:</Text>
+                      <Text style={styles.regularText}>{item.orders["0"].price}</Text>
+                    </View>
 
-                  <View style={styles.labelContainer}>
-                    <Text style={styles.label}>Quantity:</Text>
-                    <Text style={styles.regularText}>{item.orders["0"].quantity}</Text>
-                  </View>
+                    <View style={styles.labelContainer}>
+                      <Text style={styles.label}>Quantity:</Text>
+                      <Text style={styles.regularText}>{item.orders["0"].quantity}</Text>
+                    </View>
 
-                  <View style={styles.labelContainer}>
-                    <Text style={styles.label}>No. of Days:</Text>
-                    <Text style={styles.regularText}>{item.pickUpDetails.no_Of_days}</Text>
-                  </View>
+                    <View style={styles.labelContainer}>
+                      <Text style={styles.label}>No. of Days:</Text>
+                      <Text style={styles.regularText}>{item.pickUpDetails.no_Of_days}</Text>
+                    </View>
 
-                  <View style={styles.labelContainer}>
-                    <Text style={styles.label}>Selected Time:</Text>
-                    <Text style={styles.regularText}>{item.pickUpDetails.selectedTime}</Text>
+                    <View style={styles.labelContainer}>
+                      <Text style={styles.label}>Selected Time:</Text>
+                      <Text style={styles.regularText}>{item.pickUpDetails.selectedTime}</Text>
+                    </View>
                   </View>
                 </View>
-              </View>
-            );
-          })}
-        </View>
+              );
+            })}
+          </View>
+        </ScrollView>
       </SafeAreaView>
     </>
   )
@@ -114,7 +119,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 8,
     padding: 16,
-    width: '100%',
+    width: '80%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -127,6 +134,7 @@ const styles = StyleSheet.create({
       },
     }),
   },
+
   image: {
     width: 70,
     height: 70,
@@ -155,10 +163,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 4,
-    position: 'absolute',
-    top: 20,
-    left: 0,
-    right: 0,
+    marginTop: 25
   },
   text: {
     fontWeight: 'bold',
@@ -166,8 +171,10 @@ const styles = StyleSheet.create({
   },
   yourOrder: {
     fontWeight: 'bold',
-    fontSize: 14,
-    padding: 10,
-    color: "#003F5C"
+    fontSize: 18,
+    padding: 25,
+    color: "#003F5C",
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 });
