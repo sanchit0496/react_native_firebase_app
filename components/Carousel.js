@@ -4,8 +4,10 @@ import { SliderBox } from "react-native-image-slider-box";
 
 const Carousel = () => {
   const images = [
-    "https://media.istockphoto.com/id/1247884083/vector/laundry-service-room-vector-illustration-washing-and-drying-machines-with-cleansers-on-shelf.jpg?s=612x612&w=0&k=20&c=myaNEKlqX7R--bzWGDoMI7PhdxG_zdQTKYEBlymJQGk=",
-    "https://images.pexels.com/photos/5591581/pexels-photo-5591581.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "https://cdn.dribbble.com/users/5190261/screenshots/11808866/media/4b7c13fe01afdfd905475017048030dc.png?resize=1000x750&vertical=center",
+    "https://cdn.dribbble.com/users/3366206/screenshots/14693716/media/775782b7c8d0cfd9c7c02dbb8e8c36f2.jpg?resize=1000x750&vertical=center",
+    "https://cdn.dribbble.com/users/1855626/screenshots/3750468/media/45d0388accc8ede23372e7884efffbc7.jpg?resize=800x600&vertical=center",
+    "https://cdn.dribbble.com/users/1419412/screenshots/6170755/media/b3b87a4715ecb371040f6a45ee9ad12e.jpg?resize=800x600&vertical=center"
   ];
   return (
     <View>

@@ -6,27 +6,30 @@ const Services = () => {
  const services = [
     {
       id: "0",
-      image: "https://cdn-icons-png.flaticon.com/128/3003/3003984.png",
-      name: "Washing",
+      image: "https://cdn-icons-png.flaticon.com/128/628/628324.png",
+      name: "Planting",
      
     },
     {
       id: "11",
-      image: "https://cdn-icons-png.flaticon.com/128/2975/2975175.png",
-      name: "Laundry"
+      image: "https://cdn-icons-png.flaticon.com/128/2052/2052442.png",
+      name: "Car Wash"
     },
     {
       id: "12",
-      image: "https://cdn-icons-png.flaticon.com/128/9753/9753675.png",
-      name: "Wash & Iron",
-     
+      image: "https://cdn-icons-png.flaticon.com/128/4514/4514764.png",
+      name: "Electricity",
     },
     {
       id: "13",
-      image: "https://cdn-icons-png.flaticon.com/128/995/995016.png",
+      image: "https://cdn-icons-png.flaticon.com/128/994/994928.png",
       name: "Cleaning",
     },
-   
+    {
+      id: "14",
+      image: "https://cdn-icons-png.flaticon.com/128/6485/6485915.png",
+      name: "Pest Control",
+    },
   ];
   return (
     <View style={{padding:10}}>
