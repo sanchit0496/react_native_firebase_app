@@ -17,11 +17,15 @@ import { useNavigation } from "@react-navigation/native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
+
 const RegisterScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [error, setError] = useState(null); 
+
   const navigation = useNavigation();
+  
   const register = () => {
     if (email === "" || password === "" || phone === "") {
       Alert.alert(
@@ -45,7 +49,13 @@ const RegisterScreen = () => {
         email: user,
         phone: phone
       })
-    })
+    }) .catch((error) => {
+        setError("Invalid Format"); 
+        console.log("error", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
 
   const image = require('../assets/login.png');
@@ -133,6 +143,12 @@ const RegisterScreen = () => {
                 }}
               />
             </View>
+
+               {error && (
+                <Text style={{ color: "red", fontSize: 16, textAlign: "center", marginBottom: -20, marginTop: 20 }}>
+                  {error}
+                </Text>
+              )}
 
             <Pressable
               onPress={register}
