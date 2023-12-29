@@ -44,61 +44,63 @@ const ProfileScreen = () => {
     })
   }
   return (
-    <SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <>
+      <SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
 
-    <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+        <StatusBar backgroundColor="#fff" barStyle="dark-content" />
 
-      <View style={styles.topBar}>
-        <Pressable style={{ marginRight: 10 }}>
-          <Text style={styles.text}>Welcome {user.email}</Text>
-        </Pressable>
+        <View style={styles.topBar}>
+          <Pressable style={{ marginRight: 10 }}>
+            <Text style={styles.text}>Welcome {user.email}</Text>
+          </Pressable>
 
-        <Pressable onPress={signOutUser}>
-          <Text style={styles.text}>Sign Out</Text>
-        </Pressable>
-      </View>
+          <Pressable onPress={signOutUser}>
+            <Text style={styles.text}>Sign Out</Text>
+          </Pressable>
+        </View>
 
-      <Text style = {styles.yourOrder}>Your Orders</Text>
-      <View>
-        {userOrders.map((item, index) => {
-          return (
-            <View key={index} style={styles.container}>
-              <Image
-                style={styles.image}
-                source={{ uri: item.orders["0"].image }}
-              />
-              <View>
-                <View style={styles.labelContainer}>
-                  <Text style={styles.label}>Item:</Text>
-                  <Text style={styles.regularText}>{item.orders["0"].name}</Text>
-                </View>
+        <Text style={styles.yourOrder}>Your Orders</Text>
 
-                <View style={styles.labelContainer}>
-                  <Text style={styles.label}>Price:</Text>
-                  <Text style={styles.regularText}>{item.orders["0"].price}</Text>
-                </View>
+        <View>
+          {userOrders.map((item, index) => {
+            return (
+              <View key={index} style={styles.container}>
+                <Image
+                  style={styles.image}
+                  source={{ uri: item.orders["0"].image }}
+                />
+                <View>
+                  <View style={styles.labelContainer}>
+                    <Text style={styles.label}>Item:</Text>
+                    <Text style={styles.regularText}>{item.orders["0"].name}</Text>
+                  </View>
 
-                <View style={styles.labelContainer}>
-                  <Text style={styles.label}>Quantity:</Text>
-                  <Text style={styles.regularText}>{item.orders["0"].quantity}</Text>
-                </View>
+                  <View style={styles.labelContainer}>
+                    <Text style={styles.label}>Price:</Text>
+                    <Text style={styles.regularText}>{item.orders["0"].price}</Text>
+                  </View>
 
-                <View style={styles.labelContainer}>
-                  <Text style={styles.label}>No. of Days:</Text>
-                  <Text style={styles.regularText}>{item.pickUpDetails.no_Of_days}</Text>
-                </View>
+                  <View style={styles.labelContainer}>
+                    <Text style={styles.label}>Quantity:</Text>
+                    <Text style={styles.regularText}>{item.orders["0"].quantity}</Text>
+                  </View>
 
-                <View style={styles.labelContainer}>
-                  <Text style={styles.label}>Selected Time:</Text>
-                  <Text style={styles.regularText}>{item.pickUpDetails.selectedTime}</Text>
+                  <View style={styles.labelContainer}>
+                    <Text style={styles.label}>No. of Days:</Text>
+                    <Text style={styles.regularText}>{item.pickUpDetails.no_Of_days}</Text>
+                  </View>
+
+                  <View style={styles.labelContainer}>
+                    <Text style={styles.label}>Selected Time:</Text>
+                    <Text style={styles.regularText}>{item.pickUpDetails.selectedTime}</Text>
+                  </View>
                 </View>
               </View>
-            </View>
-          );
-        })}
-
-      </View>
-    </SafeAreaView>
+            );
+          })}
+        </View>
+      </SafeAreaView>
+    </>
   )
 }
 
@@ -112,6 +114,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 8,
     padding: 16,
+    width: '100%',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
@@ -136,16 +139,17 @@ const styles = StyleSheet.create({
   label: {
     fontWeight: 'bold',
     marginRight: 5,
+    color: "#003F5C"
   },
   regularText: {
-    marginLeft: 'auto', // Align dynamic content to the right
-    // You can define other styles for regular text here if needed
+    marginLeft: 'auto',
+    color: "#003F5C"
   },
   topBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 16,
-    backgroundColor: '#fff', // Set your desired background color
+    backgroundColor: '#fff',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -158,10 +162,12 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: 'bold',
+    color: "#003F5C"
   },
   yourOrder: {
     fontWeight: 'bold',
     fontSize: 14,
-    padding: 10
+    padding: 10,
+    color: "#003F5C"
   }
 });

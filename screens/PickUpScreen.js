@@ -6,7 +6,8 @@ import {
   TextInput,
   Pressable,
   ScrollView,
-  Alert
+  Alert,
+  StatusBar
 } from "react-native";
 import React, { useState } from "react";
 import HorizontalDatepicker from "@awrminkhodaei/react-native-horizontal-datepicker";
@@ -21,6 +22,15 @@ const PickUpScreen = () => {
     .reduce((curr, prev) => curr + prev, 0);
   const [selectedTime, setSelectedTime] = useState([]);
   const [delivery, setDelivery] = useState([]);
+
+    // Calculate the dates
+    const today = new Date();
+    const endDate = new Date();
+    endDate.setDate(today.getDate() + 14); // Two weeks from today
+    const initialSelectedDate = new Date();
+    initialSelectedDate.setDate(today.getDate() + 4); // Four days from today
+
+    
   const deliveryTime = [
     {
       id: "0",
@@ -100,28 +110,30 @@ const PickUpScreen = () => {
   return (
     <>
       <SafeAreaView>
-        <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10 }}>
-          enter Address
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+
+        <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10, marginTop: 45 }}>
+          Enter Pick Up Address
         </Text>
         <TextInput
           style={{
-            padding: 40,
+            padding: 10,
             borderColor: "gray",
             borderWidth: 0.7,
-            paddingVertical: 80,
+            paddingVertical: 40,
             borderRadius: 9,
             margin: 10,
           }}
         />
 
-        <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10 }}>
-          Pick Up Date
+        <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10, marginTop: 40 }}>
+          Select Pick Up Date
         </Text>
         <HorizontalDatepicker
           mode="gregorian"
-          startDate={new Date("2023-02-21")}
-          endDate={new Date("2023-02-28")}
-          initialSelectedDate={new Date("2020-08-22")}
+          startDate={today}
+          endDate={endDate}
+          initialSelectedDate={initialSelectedDate}          
           onSelectedDateChange={(date) => setSelectedDate(date)}
           selectedItemWidth={170}
           unselectedItemWidth={38}
@@ -129,13 +141,13 @@ const PickUpScreen = () => {
           itemRadius={10}
           selectedItemTextStyle={styles.selectedItemTextStyle}
           unselectedItemTextStyle={styles.selectedItemTextStyle}
-          selectedItemBackgroundColor="#222831"
+          selectedItemBackgroundColor="#003F5C"
           unselectedItemBackgroundColor="#ececec"
           flatListContainerStyle={styles.flatListContainerStyle}
         />
 
-        <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10 }}>
-          Select Time
+        <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10, marginTop: 40 }}>
+          Select Pick Up Time
         </Text>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -149,8 +161,8 @@ const PickUpScreen = () => {
                       margin: 10,
                       borderRadius: 7,
                       padding: 15,
-                      borderColor: "red",
-                      borderWidth: 0.7,
+                      borderColor: "#003F5C",
+                      borderWidth: 2,
                     }
                   : {
                       margin: 10,
@@ -165,7 +177,7 @@ const PickUpScreen = () => {
             </Pressable>
           ))}
         </ScrollView>
-        <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10 }}>
+        <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10, marginTop: 40 }}>
           Delivery Date
         </Text>
 
@@ -178,8 +190,8 @@ const PickUpScreen = () => {
                       margin: 10,
                       borderRadius: 7,
                       padding: 15,
-                      borderColor: "red",
-                      borderWidth: 0.7,
+                      borderColor: "#003F5C",
+                      borderWidth: 2,
                     }
                   : {
                       margin: 10,
@@ -201,7 +213,7 @@ const PickUpScreen = () => {
       {total === 0 ? null : (
         <Pressable
           style={{
-            backgroundColor: "#088F8F",
+            backgroundColor: "#003F5C",
             marginTop:"auto",
             padding: 10,
             marginBottom: 40,
@@ -224,13 +236,13 @@ const PickUpScreen = () => {
                 marginVertical: 6,
               }}
             >
-              extra charges might apply
+              + Delivery Charges
             </Text>
           </View>
 
           <Pressable onPress={proceedToCart}>
             <Text style={{ fontSize: 17, fontWeight: "600", color: "white" }}>
-              Proceed to Cart
+              Proceed
             </Text>
           </Pressable>
         </Pressable>

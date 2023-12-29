@@ -33,7 +33,7 @@ const Services = () => {
   ];
   return (
     <View style={{padding:10}}>
-        <Text style={{fontSize:16,fontWeight:"500",marginBottom:7}}>Services Available</Text>
+        <Text style={{fontSize:16,fontWeight:"500",marginBottom:7, color: '#003F5C', marginTop: 10, marginLeft: 8}}>Services Available</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {services.map((service,index) => (
                 <Pressable style={{margin:10,backgroundColor:"white",padding:20,borderRadius:7}} key={index}>

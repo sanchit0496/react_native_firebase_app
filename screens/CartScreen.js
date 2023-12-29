@@ -26,7 +26,6 @@ const CartScreen = () => {
     .map((item) => item.quantity * item.price)
     .reduce((curr, prev) => curr + prev, 0);
   const navigation = useNavigation();
-  const userUid = auth.currentUser.uid;
   const dispatch = useDispatch();
 
   const placeOrder = async () => {
@@ -40,6 +39,9 @@ const CartScreen = () => {
       pickUpDetails: route.params,
     });
   };
+
+  const deliveryCharges = Math.floor(Math.random() * 80) + 1;
+
 
   return (
     <>
@@ -63,8 +65,12 @@ const CartScreen = () => {
                 size={24}
                 color="black"
               />
-              <Text>Your Bucket</Text>
+             
             </View>
+
+            <Text style={{ fontSize: 16, fontWeight: "bold", marginTop: 5, color: "#003F5C", marginLeft: 8, marginBottom: 15 }}>
+              Your Bucket
+            </Text>
 
             <Pressable
               style={{
@@ -85,7 +91,7 @@ const CartScreen = () => {
                   }}
                   key={index}
                 >
-                  <Text style={{ width: 100, fontSize: 16, fontWeight: "500" }}>
+                  <Text style={{ width: 100, fontSize: 16, fontWeight: "500",  color: "#003F5C" }}>
                     {item.name}
                   </Text>
 
@@ -96,7 +102,7 @@ const CartScreen = () => {
                       paddingHorizontal: 10,
                       paddingVertical: 5,
                       alignItems: "center",
-                      borderColor: "#BEBEBE",
+                      borderColor: "#003F5C",
                       borderWidth: 0.5,
                       borderRadius: 10,
                     }}
@@ -110,7 +116,7 @@ const CartScreen = () => {
                       <Text
                         style={{
                           fontSize: 20,
-                          color: "#088F8F",
+                          color: "#003F5C",
                           paddingHorizontal: 6,
                           fontWeight: "600",
                         }}
@@ -123,7 +129,7 @@ const CartScreen = () => {
                       <Text
                         style={{
                           fontSize: 19,
-                          color: "#088F8F",
+                          color: "#003F5C",
                           paddingHorizontal: 8,
                           fontWeight: "600",
                         }}
@@ -141,7 +147,7 @@ const CartScreen = () => {
                       <Text
                         style={{
                           fontSize: 20,
-                          color: "#088F8F",
+                          color: "#003F5C",
                           paddingHorizontal: 6,
                           fontWeight: "600",
                         }}
@@ -151,15 +157,15 @@ const CartScreen = () => {
                     </Pressable>
                   </Pressable>
 
-                  <Text style={{ fontSize: 16, fontWeight: "500" }}>
-                    ${item.price * item.quantity}
+                  <Text style={{ fontSize: 16, fontWeight: "500", color: "#003F5C" }}>
+                    ₹{item.price * item.quantity}
                   </Text>
                 </View>
               ))}
             </Pressable>
 
             <View style={{ marginHorizontal: 10 }}>
-              <Text style={{ fontSize: 16, fontWeight: "bold", marginTop: 30 }}>
+              <Text style={{ fontSize: 16, fontWeight: "bold", marginTop: 30, color: "#003F5C" }}>
                 Billing Details
               </Text>
               <View
@@ -178,11 +184,11 @@ const CartScreen = () => {
                   }}
                 >
                   <Text
-                    style={{ fontSize: 18, fontWeight: "400", color: "gray" }}
+                    style={{ fontSize: 16, fontWeight: "400", color: "gray" }}
                   >
                     Item Total
                   </Text>
-                  <Text style={{ fontSize: 18, fontWeight: "400" }}>
+                  <Text style={{ fontSize: 16, fontWeight: "400", color: '#003F5C' }}>
                     ₹{total}
                   </Text>
                 </View>
@@ -196,28 +202,21 @@ const CartScreen = () => {
                   }}
                 >
                   <Text
-                    style={{ fontSize: 18, fontWeight: "400", color: "gray" }}
+                    style={{ fontSize: 16, fontWeight: "400", color: "gray" }}
                   >
-                    Delivery Fee | 1.2KM
+                    Delivery Charges
                   </Text>
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: "400",
-                      color: "#088F8F",
+                      color: "#003F5C",
                     }}
                   >
-                    FREE
+                    ₹{deliveryCharges}
                   </Text>
                 </View>
 
-                <View style={{ flexDirection: "row", alignItems: "center" }}>
-                  <Text
-                    style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
-                  >
-                    Free Delivery on Your order
-                  </Text>
-                </View>
 
                 <View
                   style={{
@@ -236,20 +235,6 @@ const CartScreen = () => {
                     marginVertical: 10,
                   }}
                 >
-                  <Text
-                    style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
-                  >
-                    selected Date
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 18,
-                      fontWeight: "400",
-                      color: "#088F8F",
-                    }}
-                  >
-                    {/* {route.params.pickUpDate} */}
-                  </Text>
                 </View>
 
                 <View
@@ -260,16 +245,16 @@ const CartScreen = () => {
                   }}
                 >
                   <Text
-                    style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
+                    style={{ fontSize: 16, color: "gray" }}
                   >
-                    No Of Days
+                    Days
                   </Text>
 
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: "400",
-                      color: "#088F8F",
+                      color: "#003F5C",
                     }}
                   >
                     {route.params.no_Of_days}
@@ -285,16 +270,16 @@ const CartScreen = () => {
                   }}
                 >
                   <Text
-                    style={{ fontSize: 18, fontWeight: "500", color: "gray" }}
+                    style={{ fontSize: 16, color: "gray" }}
                   >
-                    selected Pick Up Time
+                    Pick Up
                   </Text>
 
                   <Text
                     style={{
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: "400",
-                      color: "#088F8F",
+                      color: "#003F5C",
                     }}
                   >
                     {route.params.selectedTime}
@@ -317,11 +302,11 @@ const CartScreen = () => {
                     marginVertical: 8,
                   }}
                 >
-                  <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+                  <Text style={{ fontSize: 18, fontWeight: "bold", color: '#003F5C' }}>
                     To Pay
                   </Text>
-                  <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-                    {total + 95}
+                  <Text style={{ fontSize: 18, fontWeight: "bold", color: '#003F5C' }}>
+                    ₹{total + deliveryCharges}
                   </Text>
                 </View>
               </View>
@@ -333,9 +318,9 @@ const CartScreen = () => {
       {total === 0 ? null : (
         <Pressable
           style={{
-            backgroundColor: "#088F8F",
+            backgroundColor: "#003F5C",
             marginTop: "auto",
-            padding: 10,
+            padding: 20,
             marginBottom: 40,
             margin: 15,
             borderRadius: 7,
@@ -346,17 +331,7 @@ const CartScreen = () => {
         >
           <View>
             <Text style={{ fontSize: 17, fontWeight: "600", color: "white" }}>
-              {cart.length} items | $ {total}
-            </Text>
-            <Text
-              style={{
-                fontSize: 15,
-                fontWeight: "400",
-                color: "white",
-                marginVertical: 6,
-              }}
-            >
-              extra charges might apply
+              {cart.length} Items | ₹{total + deliveryCharges}
             </Text>
           </View>
 

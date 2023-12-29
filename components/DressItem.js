@@ -42,6 +42,7 @@ const DressItem = ({ item }) => {
               fontSize: 17,
               fontWeight: "500",
               marginBottom: 7,
+              color: '#003F5C'
             }}
           >
             {item.name}
@@ -77,7 +78,7 @@ const DressItem = ({ item }) => {
               <Text
                 style={{
                   fontSize: 20,
-                  color: "#088F8F",
+                  color: "#003F5C",
                   paddingHorizontal: 6,
                   fontWeight: "600",
                   textAlign: "center",
@@ -91,7 +92,7 @@ const DressItem = ({ item }) => {
               <Text
                 style={{
                   fontSize: 19,
-                  color: "#088F8F",
+                  color: "#003F5C",
                   paddingHorizontal: 8,
                   fontWeight: "600",
                 }}
@@ -118,7 +119,7 @@ const DressItem = ({ item }) => {
               <Text
                 style={{
                   fontSize: 20,
-                  color: "#088F8F",
+                  color: "#003F5C",
                   paddingHorizontal: 6,
                   fontWeight: "600",
                   textAlign: "center",
@@ -132,11 +133,11 @@ const DressItem = ({ item }) => {
           <Pressable onPress={addItemToCart} style={{ width: 80 }}>
             <Text
               style={{
-                borderColor: "gray",
+                borderColor: "#003F5C",
                 borderRadius: 4,
-                borderWidth: 0.8,
+                borderWidth: 1,
                 marginVertical: 10,
-                color: "#088F8F",
+                color: "#003F5C",
                 textAlign: "center",
                 padding: 5,
                 fontSize: 17,

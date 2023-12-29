@@ -63,13 +63,10 @@ const RegisterScreen = () => {
             marginTop: 100,
           }}
         >
-          <Text style={{ fontSize: 20, color: "#662d91", fontWeight: "bold" }}>
-            Register
+          <Text style={{ fontSize: 20, color: "#003F5C", fontWeight: "bold" }}>
+            Sign Up
           </Text>
 
-          <Text style={{ fontSize: 18, marginTop: 8, fontWeight: "600" }}>
-            Create a new Account
-          </Text>
         </View>
 
         <View style={{ marginTop: 50 }}>
@@ -136,7 +133,7 @@ const RegisterScreen = () => {
           onPress={register}
             style={{
               width: 200,
-              backgroundColor: "#318CE7",
+              backgroundColor: "#003F5C",
               padding: 15,
               borderRadius: 7,
               marginTop: 50,
@@ -158,7 +155,7 @@ const RegisterScreen = () => {
                 fontWeight: "500",
               }}
             >
-              Already have a account? Sign in
+              Sign In To Existing Account
             </Text>
           </Pressable>
         </View>
