@@ -53,9 +53,6 @@ const RegisterScreen = () => {
         setError("Invalid Format"); 
         console.log("error", error);
       })
-      .finally(() => {
-        setLoading(false);
-      });
   }
 
   const image = require('../assets/login.png');
