@@ -27,16 +27,18 @@ const HomeScreen = () => {
   const [items, setItems] = useState([]);
   const total = cart.map((item) => item.quantity * item.price).reduce((curr, prev) => curr + prev, 0);
   const navigation = useNavigation();
-  const [displayCurrentAddress, setdisplayCurrentAddress] = useState(
-    "we are loading your location"
-  );
-  const [locationServicesEnabled, setlocationServicesEnabled] = useState(false);
+  
+  const [displayCurrentAddress, setDisplayCurrentAddress] = useState("Location");
+  const [locationServicesEnabled, setLocationServicesEnabled] = useState(false);
+
   useEffect(() => {
-    checkIfLocationEnabled();
-    getCurrentLocation();
+    checkLocationStatusAndFetch();
   }, []);
-  const checkIfLocationEnabled = async () => {
+
+  const checkLocationStatusAndFetch = async () => {
     let enabled = await Location.hasServicesEnabledAsync();
+    setLocationServicesEnabled(enabled);
+
     if (!enabled) {
       Alert.alert(
         "Location services not enabled",
@@ -51,16 +53,17 @@ const HomeScreen = () => {
         { cancelable: false }
       );
     } else {
-      setlocationServicesEnabled(enabled);
+      fetchCurrentLocation();
     }
   };
-  const getCurrentLocation = async () => {
+
+  const fetchCurrentLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
 
     if (status !== "granted") {
       Alert.alert(
         "Permission denied",
-        "allow the app to use the location services",
+        "Allow the app to use the location services",
         [
           {
             text: "Cancel",
@@ -70,23 +73,30 @@ const HomeScreen = () => {
         ],
         { cancelable: false }
       );
-    }
+    } else {
+      try {
+        const { coords } = await Location.getCurrentPositionAsync();
 
-    const { coords } = await Location.getCurrentPositionAsync();
-    if (coords) {
-      const { latitude, longitude } = coords;
+        if (coords) {
+          const { latitude, longitude } = coords;
 
-      let response = await Location.reverseGeocodeAsync({
-        latitude,
-        longitude,
-      });
+          let response = await Location.reverseGeocodeAsync({
+            latitude,
+            longitude,
+          });
 
-      for (let item of response) {
-        let address = `${item.name} ${item.city} ${item.postalCode}`;
-        setdisplayCurrentAddress(address);
+          if (response && response.length > 0) {
+            const item = response[0];
+            const address = `${item.name} ${item.city} ${item.postalCode}`;
+            setDisplayCurrentAddress(address);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching current location:", error);
       }
     }
   };
+
   const product = useSelector((state) => state.product.product);
   const dispatch = useDispatch();
   useEffect(() => {

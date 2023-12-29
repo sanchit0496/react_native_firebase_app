@@ -74,7 +74,7 @@ const RegisterScreen = () => {
 
           </View>
 
-          <View style={{ paddingLeft: 10, paddingRight: 10}}>
+          <View style={{ paddingLeft: 10, paddingRight: 10, paddingTop: 20}}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               <MaterialCommunityIcons
                 name="email-outline"

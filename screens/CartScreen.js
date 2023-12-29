@@ -37,6 +37,7 @@ const CartScreen = () => {
       user: auth.currentUser.email,
       orders: { ...cart },
       pickUpDetails: route.params,
+      deliveryCharge: deliveryCharges
     });
   };
 

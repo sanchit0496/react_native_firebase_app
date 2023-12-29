@@ -67,8 +67,7 @@ const LoginScreen = () => {
 
         {loading ? (
           <View style={{ alignItems: "center", justifyContent: "center", flexDirection: "row", flex: 1 }}>
-            <Text style={{ marginRight: 10 }}>Loading</Text>
-            <ActivityIndicator size="large" color={"red"} />
+            <ActivityIndicator size="large" color={"white"} />
           </View>
         ) : (
           <KeyboardAvoidingView style = {{backgroundColor: "white", margin: 10, borderRadius: 15, paddingBottom: 20, opacity: 0.8}}>
@@ -80,7 +79,7 @@ const LoginScreen = () => {
               }}
             >
               <Text style={{ fontSize: 20, color: "#003F5C", fontWeight: "bold", marginBottom: 40 }}>
-                Sign In
+              Sign In to Get Organized
               </Text>
             </View>
 

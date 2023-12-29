@@ -90,14 +90,15 @@ const ProfileScreen = () => {
                     </View>
 
                     <View style={styles.labelContainer}>
-                      <Text style={styles.label}>No. of Days:</Text>
-                      <Text style={styles.regularText}>{item.pickUpDetails.no_Of_days}</Text>
-                    </View>
-
-                    <View style={styles.labelContainer}>
                       <Text style={styles.label}>Selected Time:</Text>
                       <Text style={styles.regularText}>{item.pickUpDetails.selectedTime}</Text>
                     </View>
+
+                    <View style={styles.labelContainer}>
+                      <Text style={styles.label}>Recurring Service:</Text>
+                      <Text style={styles.regularText}>{item.pickUpDetails.no_Of_days}</Text>
+                    </View>
+                    
                   </View>
                 </View>
               );
