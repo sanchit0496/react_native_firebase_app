@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 const PickUpScreen = () => {
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const cart = useSelector((state) => state.cart.cart);
   const total = cart
     .map((item) => item.quantity * item.price)
@@ -34,23 +34,23 @@ const PickUpScreen = () => {
   const deliveryTime = [
     {
       id: "0",
-      name: "2-3 Days",
+      name: "15 Days",
     },
     {
       id: "1",
-      name: "3-4 Days",
+      name: "30 Days",
     },
     {
       id: "2",
-      name: "4-5 Days",
+      name: "45 Days",
     },
     {
       id: "3",
-      name: "5-6 Days",
+      name: "60 Days",
     },
     {
       id: "4",
-      name: "Tommorrow",
+      name: "Not Required",
     },
   ];
 
@@ -113,7 +113,7 @@ const PickUpScreen = () => {
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
 
         <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10, marginTop: 45 }}>
-          Enter Pick Up Address
+          Enter Service Address
         </Text>
         <TextInput
           style={{
@@ -127,7 +127,7 @@ const PickUpScreen = () => {
         />
 
         <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10, marginTop: 40 }}>
-          Select Pick Up Date
+          Select Service Date
         </Text>
         <HorizontalDatepicker
           mode="gregorian"
@@ -147,7 +147,7 @@ const PickUpScreen = () => {
         />
 
         <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10, marginTop: 40 }}>
-          Select Pick Up Time
+          Select Service Time
         </Text>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -178,7 +178,7 @@ const PickUpScreen = () => {
           ))}
         </ScrollView>
         <Text style={{ fontSize: 16, fontWeight: "500", marginHorizontal: 10, marginTop: 40 }}>
-          Delivery Date
+          Recurring Service
         </Text>
 
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
