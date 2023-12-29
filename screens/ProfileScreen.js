@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, Pressable, Image, Platform, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, SafeAreaView, Pressable, Image, Platform, ScrollView, StatusBar } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { auth } from '../firebase'
 import { signOut } from 'firebase/auth';
@@ -45,16 +45,20 @@ const ProfileScreen = () => {
   }
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      
-        <Pressable style={{ marginVertical: 10 }}>
-        <Text>welcome {user.email}</Text>
-      </Pressable>
 
-      <Pressable onPress={signOutUser}>
-        <Text>Sign Out</Text>
-      </Pressable>
+    <StatusBar backgroundColor="#fff" barStyle="dark-content" />
 
-  
+      <View style={styles.topBar}>
+        <Pressable style={{ marginRight: 10 }}>
+          <Text style={styles.text}>Welcome {user.email}</Text>
+        </Pressable>
+
+        <Pressable onPress={signOutUser}>
+          <Text style={styles.text}>Sign Out</Text>
+        </Pressable>
+      </View>
+
+      <Text style = {styles.yourOrder}>Your Orders</Text>
       <View>
         {userOrders.map((item, index) => {
           return (
@@ -137,4 +141,27 @@ const styles = StyleSheet.create({
     marginLeft: 'auto', // Align dynamic content to the right
     // You can define other styles for regular text here if needed
   },
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 16,
+    backgroundColor: '#fff', // Set your desired background color
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 4,
+    position: 'absolute',
+    top: 20,
+    left: 0,
+    right: 0,
+  },
+  text: {
+    fontWeight: 'bold',
+  },
+  yourOrder: {
+    fontWeight: 'bold',
+    fontSize: 14,
+    padding: 10
+  }
 });
