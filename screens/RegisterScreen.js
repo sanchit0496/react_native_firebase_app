@@ -29,7 +29,6 @@ const RegisterScreen = () => {
           [
             {
               text: "Cancel",
-              onPress: () => console.log("Cancel Pressed"),
               style: "cancel"
             },
             { text: "OK", onPress: () => console.log("OK Pressed") }
@@ -38,7 +37,6 @@ const RegisterScreen = () => {
         );
       }
       createUserWithEmailAndPassword(auth,email,password).then((userCredential) => {
-        console.log("user credential",userCredential);
         const user = userCredential._tokenResponse.email;
         const myUserUid = auth.currentUser.uid;
 

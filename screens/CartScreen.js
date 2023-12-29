@@ -16,7 +16,7 @@ import {
   incrementQuantity,
 } from "../CartReducer";
 import { decrementQty, incrementQty } from "../ProductReducer";
-import { doc, setDoc } from "firebase/firestore";
+import { addDoc, doc, getDoc, setDoc, collection } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
 const CartScreen = () => {
@@ -28,20 +28,19 @@ const CartScreen = () => {
   const navigation = useNavigation();
   const userUid = auth.currentUser.uid;
   const dispatch = useDispatch();
+
   const placeOrder = async () => {
+    console.log("auth", auth.currentUser.uid)
     navigation.navigate("Order");
     dispatch(cleanCart());
-    await setDoc(
-      doc(db, "users", `${userUid}`),
-      {
-        orders: { ...cart },
-        pickUpDetails: route.params,
-      },
-      {
-        merge: true,
-      }
-    );
+
+    const docRef = await addDoc(collection(db, "orders"), {
+      user: auth.currentUser.email,
+      orders: { ...cart },
+      pickUpDetails: route.params,
+    });
   };
+
   return (
     <>
       <ScrollView style={{ marginTop: 50 }}>

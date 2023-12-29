@@ -36,9 +36,8 @@ const LoginScreen = () => {
   
   const login = () => {
     signInWithEmailAndPassword(auth,email,password).then((userCredential) => {
-      console.log("user credential",userCredential);
       const user = userCredential.user;
-      console.log("user details",user)
+      console.log("userCredential", userCredential)
     })
   }
 

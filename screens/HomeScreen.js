@@ -27,7 +27,6 @@ const HomeScreen = () => {
   const [items,setItems] = useState([]);
   const total = cart.map((item) => item.quantity * item.price).reduce((curr,prev) => curr + prev,0);
   const navigation = useNavigation();
-  console.log(cart);
   const [displayCurrentAddress, setdisplayCurrentAddress] = useState(
     "we are loading your location"
   );
@@ -45,7 +44,6 @@ const HomeScreen = () => {
         [
           {
             text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
             style: "cancel",
           },
           { text: "OK", onPress: () => console.log("OK Pressed") },
@@ -66,7 +64,6 @@ const HomeScreen = () => {
         [
           {
             text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
             style: "cancel",
           },
           { text: "OK", onPress: () => console.log("OK Pressed") },
@@ -76,7 +73,6 @@ const HomeScreen = () => {
     }
 
     const { coords } = await Location.getCurrentPositionAsync();
-    // console.log(coords)
     if (coords) {
       const { latitude, longitude } = coords;
 
@@ -84,8 +80,6 @@ const HomeScreen = () => {
         latitude,
         longitude,
       });
-
-      // console.log(response)
 
       for (let item of response) {
         let address = `${item.name} ${item.city} ${item.postalCode}`;
@@ -108,7 +102,6 @@ const HomeScreen = () => {
     };
     fetchProducts();
   }, []);
-  console.log(product);
   const services = [
     {
       id: "0",
